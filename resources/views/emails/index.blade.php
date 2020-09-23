@@ -11,15 +11,15 @@
         @csrf
         <div class="form-group">
           <label for="name">名前（必須）</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="名前"  @if(isset($name)) value="{{ $name }}" @endif>
+          <input type="text" class="form-control" id="name" name="name" placeholder="名前"  value="{{old('name')}}">
         </div>
         <div class="form-group">
           <label for="email">宛先（必須）</label>
-          <input type="text" class="form-control" id="email" name="email" placeholder="宛先"  @if(isset($email)) value="{{ $email }}" @endif>
+          <input type="text" class="form-control" id="email" name="email" placeholder="宛先"  value="{{old('email')}}">
         </div>
         <div class="form-group">
           <label for="message">フリーメッセージ</label>
-          <textarea class="form-control" id="message" name="message" placeholder="フリーメッセージ（100文字まで）をお書きください"  rows="3"></textarea>
+          <textarea class="form-control" id="message" name="message" placeholder="フリーメッセージ（100文字まで）をお書きください"  rows="3" >{{old('message')}}</textarea>
         </div>
         <button name="submitted" type="submit" class="btn btn-primary">送信</button>
       </form>

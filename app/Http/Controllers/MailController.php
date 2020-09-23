@@ -18,6 +18,8 @@ class MailController extends Controller
 
   /**
    * メール確認
+   *
+   * TODO: 返り値の型指定
    * @param  Request $request 入力値:
    * @return
    */
@@ -25,13 +27,15 @@ class MailController extends Controller
   {
     $validator = Validator::make($request->all(), [
       'name' => 'required',
-      'email' => 'required|',
+      'email' => 'required|email',
       'body' => 'max:100'
     ]);
 
     if ($validator->fails()) {
       return redirect('/index')->withErrors($validator)->withInput();
     }
+
+    return view('emails.confirm');
 
   }
 
