@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/index', 'MailController@index');
+Route::post('/confirm', 'MailController@confirm');
