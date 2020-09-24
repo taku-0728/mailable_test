@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailSend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
@@ -35,18 +37,28 @@ class MailController extends Controller
       return redirect('/index')->withErrors($validator)->withInput();
     }
 
-    return view('emails.confirm');
+    $result = [];
+    if ($request->has(['name', 'email', 'message'])) {
+      $result['name'] = $request->name;
+      $result['email'] = $request->email;
+      $result['message'] = $request->message;
+    } else {
+      return redirect('/index', $result);
+    }
+
+    return view('emails.confirm', $result);
 
   }
 
-  public function send(): object
+  public function execute(Request $request)
   {
-    $to = [
-      'email' => 'XXXXX@XXXXX.jp',
-      'name' => 'Test',
-    ];
+    if ($request->has(['name', 'email', 'message'])) {
+      $name = $request->name;
+      $email = $request->email;
+      $message = $request->message;
+    }
 
-    Mail::to($to)->send(new MailSend());
+    Mail::to($email)->send(new MailSend($name, $message));
 
     return view('emails.result');
   }

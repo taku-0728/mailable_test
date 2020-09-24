@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 Route::get('/index', 'MailController@index');
 Route::post('/confirm', 'MailController@confirm');
+Route::post('/execute', 'MailController@execute');
