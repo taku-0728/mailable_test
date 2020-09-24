@@ -24,10 +24,10 @@
           @endif
         </div>
         <div class="form-group">
-          <label for="message">本文</label>
-          <textarea class="form-control" id="message" name="message" placeholder="フリーメッセージ（100文字まで）をお書きください"  rows="3" >{{old('message')}}</textarea>
-          @if($errors->has('message'))
-            <p>{{ $errors->first('message') }}</p>
+          <label for="body">本文</label>
+          <textarea class="form-control" id="body" name="body" placeholder="フリーメッセージ（100文字まで）をお書きください"  rows="3" >{{old('body')}}</textarea>
+          @if($errors->has('body'))
+            <p>{{ $errors->first('body') }}</p>
           @endif
         </div>
         <button name="submitted" type="submit" class="btn btn-primary">確認</button>

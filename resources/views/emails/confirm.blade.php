@@ -18,8 +18,8 @@
           <p>宛先：<br>{{ $email }}</p>
         </div>
         <div class="form-group">
-          <input type="hidden" class="form-control" id="message" name="message" value="{{ $message }}">
-          <p>本文：<br>{{ $message }}</p>
+          <input type="hidden" class="form-control" id="body" name="body" value="{{ $body }}">
+          <p>本文：<br>{{ $body }}</p>
         </div>
         <button name="submitted" type="submit" class="btn btn-primary">送信</button>
       </form>

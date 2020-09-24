@@ -38,10 +38,10 @@ class MailController extends Controller
     }
 
     $result = [];
-    if ($request->has(['name', 'email', 'message'])) {
+    if ($request->has(['name', 'email', 'body'])) {
       $result['name'] = $request->name;
       $result['email'] = $request->email;
-      $result['message'] = $request->message;
+      $result['body'] = $request->body;
     } else {
       return redirect('/index', $result);
     }
@@ -52,13 +52,15 @@ class MailController extends Controller
 
   public function execute(Request $request)
   {
-    if ($request->has(['name', 'email', 'message'])) {
+    \Log::info("ここまで");
+    
+    if ($request->has(['name', 'email', 'body'])) {
       $name = $request->name;
       $email = $request->email;
-      $message = $request->message;
+      $body = $request->body;
     }
 
-    Mail::to($email)->send(new MailSend($name, $message));
+    Mail::to($email)->send(new MailSend($name, $body));
 
     return view('emails.result');
   }
